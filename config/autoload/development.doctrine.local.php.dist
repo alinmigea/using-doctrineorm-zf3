@@ -23,6 +23,9 @@ return [
                     'user'     => 'root',
                     'password' => 'your_password',
                     'dbname'   => 'your_database',
+		    'driverOptions' => [
+                        PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8'
+                    ]
                 ],
             ],
         ],
