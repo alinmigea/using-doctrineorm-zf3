@@ -1,6 +1,5 @@
 <?php
-
-
+namespace Entities;
 
 use Doctrine\ORM\Mapping as ORM;
 
@@ -8,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
  * TbBooks
  *
  * @ORM\Table(name="tb_books")
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="Entities\Repositories\TbBooksRepository")
  */
 class TbBooks
 {
