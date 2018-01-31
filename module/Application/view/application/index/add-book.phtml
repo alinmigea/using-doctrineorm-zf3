@@ -1,0 +1,43 @@
+<h1>Adding book</h1>
+
+<br/>
+<?php
+// within a view script
+$form = $this->form;
+$form->prepare();
+
+// Assuming the "contact/process" route exists...
+//$form->setAttribute('action', $this->url('contact/process'));
+
+// Set the method attribute for the form
+$form->setAttribute('method', 'post');
+
+// Get the form label plugin
+$formLabel = $this->plugin('formLabel');
+
+// Render the opening tag
+echo $this->form()->openTag($form);
+?>
+
+  <div class="form-group">
+    <?php $name = $form->get('name');
+    echo $formLabel->openTag() . $name->getOption('label');
+    echo $formLabel->closeTag();
+    echo $this->formInput($name);
+    echo $this->formElementErrors($name);
+    ?>
+  </div>
+
+  <div class="form-group">
+  <?php
+      $name = $form->get('author');
+      echo $formLabel->openTag() . $name->getOption('label');
+      echo $formLabel->closeTag();
+      echo $this->formInput($name);
+      echo $this->formElementErrors($name);
+  ?>
+  </div>
+
+<?= $this->formElement($form->get('send')) ?>
+
+<?= $this->form()->closeTag() ?>

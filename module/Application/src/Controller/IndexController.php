@@ -49,4 +49,14 @@ class IndexController extends AbstractActionController
 
         return new ViewModel();
     }
+
+    public function addBookAction()
+    {
+        $tb_books_form = new \Application\Form\TbBooksForm();
+
+        return new ViewModel([
+            'form' => $tb_books_form,
+        ]);
+    }
+
 }
