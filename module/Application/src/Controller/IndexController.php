@@ -23,18 +23,26 @@ class IndexController extends AbstractActionController
     {
 
         $sm = $this->container->get('Doctrine\ORM\EntityManager');
-
+        /*
         //PDO
         $conn = $sm->getConnection();
-
         $res = $conn->prepare('SELECT * FROM tb_books');
         $res->execute();
         $red = $res->fetchAll();
-
         foreach($red as $data){
           echo $data['name'].' - '.$data['author'];
           echo '<br>';
+        }*/
+
+        $select = $sm->getRepository('Entities\TbBooks')->getAllBooks();
+
+        foreach($select as $data){
+          echo $data->getId().' - '.$data->getName().' - '.$data->getAuthor();
+          echo '<br>';
         }
+
+
+
 
 
         exit;
