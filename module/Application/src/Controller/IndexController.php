@@ -28,9 +28,32 @@ class IndexController extends AbstractActionController
     {
         $tb_books_form = new \Application\Form\TbBooksForm();
 
-        return new ViewModel([
-            'form' => $tb_books_form,
-        ]);
+        $request = $this->getRequest();
+
+        if (!$request->isPost()){
+          return new ViewModel([
+              'form' => $tb_books_form,
+          ]);
+        }
+
+        $tb_books_form->setData($request->getPost());
+
+        if (!$tb_books_form->isValid()) {
+            exit('form not valid');
+        }
+
+        if (!$tb_books_form->save($this->container->get('Doctrine\ORM\EntityManager'))) {
+            exit('not saved');
+        }
+
+        return $this->redirect()->toRoute('application', array('action'=>'success'));
+
     }
+
+    public function successAction()
+    {
+        return new ViewModel();
+    }
+
 
 }
